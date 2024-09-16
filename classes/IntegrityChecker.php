@@ -1,22 +1,22 @@
 <?php
-class IntegrityChecker 
+class IntegrityChecker
 {
     const INDEX_PHP_PATH = ABSPATH . 'index.php';
     const KNOWN_GOOD_INDEX_PHP_HASH = 'YOUR_ORIGINAL_INDEX_PHP_FILE_HASH'; // Replace with actual hash
 
-    public function get_index_file_hash() 
+    public function get_index_file_hash()
     {
         return hash_file('sha256', self::INDEX_PHP_PATH);
     }
 
-    public function store_original_index_file_hash() 
+    public function store_original_index_file_hash()
     {
         if (!get_option('index_php_original_hash')) {
             update_option('index_php_original_hash', $this->get_index_file_hash());
         }
     }
 
-    public function check_if_altered_before_activation() 
+    public function check_if_altered_before_activation()
     {
         $current_hash = $this->get_index_file_hash();
 
@@ -25,7 +25,7 @@ class IntegrityChecker
         }
     }
 
-    public function check_index_file_integrity() 
+    public function check_index_file_integrity()
     {
         $original_hash = get_option('index_php_original_hash');
 
@@ -46,5 +46,3 @@ class IntegrityChecker
         }
     }
 }
-
-?>

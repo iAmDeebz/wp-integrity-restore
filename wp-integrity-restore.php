@@ -14,14 +14,15 @@ include_once "classes/Logger.php";
 include_once "classes/Scheduler.php";
 include_once "classes/FileLocker.php";
 
-class WPIntegrityRestore 
+class WPIntegrityRestore
 {
     protected $integrity_checker;
     protected $backup_manager;
     protected $logger;
     protected $scheduler;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->integrity_checker = new IntegrityChecker();
         $this->backup_manager = new BackupManager();
         $this->logger = new Logger();
@@ -35,7 +36,8 @@ class WPIntegrityRestore
         register_deactivation_hook(__FILE__, [$this->scheduler, 'clear_scheduled_file_check']);
     }
 
-    public function on_plugin_activation() {
+    public function on_plugin_activation()
+    {
         $this->integrity_checker->check_if_altered_before_activation();
         $this->backup_manager->create_index_backup();
         $this->integrity_checker->store_original_index_file_hash();
@@ -43,4 +45,3 @@ class WPIntegrityRestore
 }
 
 new WPIntegrityRestore();
-?>
