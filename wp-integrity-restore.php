@@ -46,7 +46,6 @@ class WPIntegrityRestore
         $this->integrity_checker->store_original_index_file_hash();
     }
 
-    // Add admin menu and page
     public function add_admin_menu()
     {
         add_management_page(
@@ -63,10 +62,8 @@ class WPIntegrityRestore
         wp_enqueue_style('wp-integrity-restore-admin-style', plugin_dir_url(__FILE__) . 'css/admin-style.css');
     }
 
-    // Render the custom admin page with additional buttons for lock/unlock/restore
     public function render_admin_page()
     {
-        // Check if the user clicked the "Check Now" button
         if (isset($_POST['check_now'])) {
             $result = $this->integrity_checker->check_index_file_integrity();
 
@@ -81,28 +78,23 @@ class WPIntegrityRestore
             echo "<div class=\"$class notice\"><p>$message</p></div>";
         }
 
-        // Handle Unlock & Restore
         if (isset($_POST['unlock_restore'])) {
             $this->integrity_checker->unlock_and_restore_index_file();
 
             echo '<div class="updated notice"><p>index.php has been unlocked, restored, and a new hash has been saved.</p></div>';
         }
 
-        // Handle Lock
         if (isset($_POST['lock_file'])) {
             $this->integrity_checker->lock_index_file();
 
             echo '<div class="updated notice"><p>index.php has been locked and set to read-only.</p></div>';
         }
 
-        // Handle Unlock
         if (isset($_POST['unlock_file'])) {
             $this->integrity_checker->unlock_index_file();
 
             echo '<div class="updated notice"><p>index.php has been unlocked (writable).</p></div>';
         }
-
-        // Render the admin page content
 ?>
         <div class="wrap">
             <h1>WP Integrity Restore - File Integrity Actions</h1>

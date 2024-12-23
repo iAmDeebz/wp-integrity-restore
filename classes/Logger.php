@@ -3,7 +3,7 @@ class Logger
 {
     const LOG_FILE = 'access_log.txt';
 
-    public function log_unauthorized_access()
+    public function log_unauthorized_access(): void
     {
         $log_file = plugin_dir_path(__FILE__) . self::LOG_FILE;
         $current_time = date("Y-m-d H:i:s");
