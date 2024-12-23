@@ -1,4 +1,6 @@
 <?php
+namespace WPIntegrityRestore;
+
 class BackupManager 
 {
     public function restore_index_file($backup_file): void

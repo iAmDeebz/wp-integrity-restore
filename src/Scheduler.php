@@ -1,4 +1,6 @@
 <?php
+namespace WPIntegrityRestore;
+
 class Scheduler
 {
     public function schedule_file_check(): void

@@ -1,4 +1,6 @@
 <?php 
+namespace WPIntegrityRestore;
+
 class IntegrityChecker
 {
     const INDEX_PHP_PATH = ABSPATH . 'index.php';

@@ -1,4 +1,6 @@
 <?php
+namespace WPIntegrityRestore;
+
 class FileLocker 
 {
     public function lock_index_file(): void

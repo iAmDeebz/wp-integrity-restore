@@ -1,7 +1,9 @@
 <?php
+namespace WPIntegrityRestore;
+
 class Logger
 {
-    const LOG_FILE = 'access_log.txt';
+    const LOG_FILE = '../logs/access_log.txt';
 
     public function log_unauthorized_access(): void
     {
